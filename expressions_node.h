@@ -13,7 +13,7 @@ public:
 
 	enum Type { EXPR, DISJ, CONJ, NEG };
 	enum Oper { NONE, NOT, AND, OR, IMPL };
-	enum Proof { AXIOM, MP, NP };
+	enum Proof { AXIOM, MP, NP, SP };
 
 	Type t;
 	Oper oper;
@@ -42,7 +42,7 @@ public:
 		oper = oper1;
 	}
 
-	static bool is_equal(shared_ptr<expressions_node> e1, shared_ptr<expressions_node> e2) {
+	/*static bool is_equal(shared_ptr<expressions_node> e1, shared_ptr<expressions_node> e2) {
 		if (e1->oper == e2->oper) {
 			if (e1->oper == NONE) 
 				return (e1->var == e2->var);
@@ -51,7 +51,7 @@ public:
 			return is_equal(e1->left, e2->left) && is_equal(e1->right, e2->right);
 		}
 		return false;
-	}
+	}*/
 };
 
 #endif

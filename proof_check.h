@@ -4,21 +4,30 @@
 #include "expressions_parser.h"
 #include <unordered_map>
 #include <deque>
+#include <vector>
+#include <string>
 
 class proof_checker {
 
 	vector<shared_ptr<expressions_node>> axioms;
-	vector<shared_ptr<expressions_node>> expressions;
 
 	vector<int> MP_first;
 	vector<int> MP_second;
 	vector<shared_ptr<expressions_node>> MP_expression;
 
 	unordered_map<string, int> MP_map;
+	unordered_multimap<string, shared_ptr<expressions_node>> MP_left;
+	unordered_multimap<string, shared_ptr<expressions_node>> MP_all;
 	vector<string> axioms_s;
+
+	unordered_map<string, int> suppositions;
+
+	int cnt, cnt_sup;
 
 public:
 	proof_checker() {
+		cnt = cnt_sup = 0;
+
 		axioms_s.push_back("A->B->A");
 		axioms_s.push_back("(A->B)->(A->B->C)->(A->C)");
 		axioms_s.push_back("A->B->A&B");
@@ -30,8 +39,8 @@ public:
 		axioms_s.push_back("(A->B)->(A->!B)->!A");
 		axioms_s.push_back("!!A->A");
 
-		shared_ptr<expressions_parser> expressions_parser(new expressions_parser());
-		for (string a : axioms_s) 
+		shared_ptr<expressions_parser> expressions_parser(new class expressions_parser());
+		for (string a : axioms_s)
 			axioms.push_back(expressions_parser->parse(a));
 
 		int num = 1;
@@ -41,25 +50,47 @@ public:
 		}
 	}
 
+	void insert_suppositions(string sup) {
+		shared_ptr<expressions_parser> expressions_parser(new class expressions_parser());
+		suppositions.insert(make_pair(expressions_parser->parse(sup)->var, cnt_sup++));
+	}
+
 	void check(shared_ptr<expressions_node> expr) {
-		expr->num = expressions.size() + 1;
-		if (expr->proof == expressions_node::NP) 
+		expr->num = ++cnt;
+		if (expr->proof == expressions_node::NP)
 			proof(expr);
 
 		if (expr->proof != expressions_node::NP) {
-			for (auto i : expressions)
-				if (i->proof != expressions_node::NP) {
-					addIfMP(i, expr);
-					addIfMP(expr, i);
-				}
+
+
+			auto range = MP_left.equal_range(expr->var);
+			for (auto i = range.first; i != range.second; i++) {
+				MP_first.push_back(i->second->num);
+				MP_second.push_back(expr->num);
+				MP_map.insert(make_pair(i->second->right->var, MP_second.size() - 1));
+			}
+
+			range = MP_all.equal_range(expr->left->var);
+			for (auto i = range.first; i != range.second; i++) {
+				MP_first.push_back(i->second->num);
+				MP_second.push_back(expr->num);
+				MP_map.insert(make_pair(expr->right->var, MP_second.size() - 1));
+			}
 		}
-		expressions.push_back(expr);
+		if (expr->oper == expressions_node::IMPL)
+			MP_left.insert(make_pair(expr->left->var, expr));
+		MP_all.insert(make_pair(expr->var, expr));
 	}
 
 private:
 	void proof(shared_ptr<expressions_node> expr) {
+		if (suppositions.find(expr->var) != suppositions.end()) {
+			expr->frst = suppositions.find(expr->var)->second;
+			expr->proof = expressions_node::SP;
+			return;
+		}
 		for (shared_ptr<expressions_node> axiom : axioms)
-			if (is_axiom(expr, axiom)) 
+			if (is_axiom(expr, axiom))
 				return;
 		is_MP(expr);
 	}
@@ -80,7 +111,7 @@ private:
 
 			if (curA->oper == expressions_node::NONE) {
 				if (m.find(curA->var) != m.end()) {
-					if ((*m.find(curA->var)).second != (curE->var))  // first
+					if ((*m.find(curA->var)).second != (curE->var))
 						return false;
 				}
 				else
@@ -99,7 +130,6 @@ private:
 					return false;
 			}
 		}
-
 		expr->proof = expressions_node::AXIOM;
 		expr->frst = ax->num;
 		return true;
@@ -114,25 +144,7 @@ private:
 			expr->snd = MP_second[i];
 			return true;
 		}
-
-		/*for (size_t i = 0; i < MP_expression.size(); i++) {
-			if (expr->is_equal(MP_expression[i]->right, expr)) {
-				expr->proof = expressions_node::MP;
-				expr->frst = MP_first[i];
-				expr->snd = MP_second[i];
-				return true;
-			}
-		}*/
 		return false;
-	}
-
-	void addIfMP(shared_ptr<expressions_node> a, shared_ptr<expressions_node> b) {
-		if (a->oper == expressions_node::IMPL && a->is_equal(a->left, b)) {
-			MP_first.push_back(b->num);
-			MP_second.push_back(a->num);
-			MP_map.insert(make_pair(a->right->var, MP_second.size() - 1));
-			MP_expression.push_back(a);
-		}
 	}
 };
 
