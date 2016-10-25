@@ -14,11 +14,13 @@ int main() {
 	proof_checker a;
 
 	getline(cin, head);
-	for (size_t i = 2; i < head.length(); i+=2) {
+	for (size_t i = 0; head[i] != '|'; i++) {
 		string cur;
-		while (head[i] != '|' && i < head.length())
+		while (head[i] != '|' && head[i] != ',' && i < head.length())
 			cur.push_back(head[i++]);
 		a.insert_suppositions(cur);
+		if (head[i] == '|')
+			break;	
 	}
 	cout << head << endl;
 	while (getline(cin, str)) {

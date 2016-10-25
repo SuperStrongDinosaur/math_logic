@@ -27,7 +27,7 @@ private:
 				new_res->left = res;
 				new_res->right = parse_expression();
 				res = new_res;
-				res->var = ( res->left->var + "->" + res->right->var);
+				res->var = ('(' +  res->left->var + "->" + res->right->var + ')');
 			}
 		}
 		return res;
@@ -41,7 +41,7 @@ private:
 			new_res->left = res;
 			new_res->right = parse_conj();
 			res = new_res;
-			res->var = (res->left->var + "|" + res->right->var);
+			res->var = ('(' + res->left->var + "|" + res->right->var + ')');
 		}
 		return res;
 	}
@@ -54,7 +54,7 @@ private:
 			new_res->left = res;
 			new_res->right = parse_neg();
 			res = new_res;
-			res->var = (res->left->var + "&" + res->right->var);
+			res->var = ('(' + res->left->var + "&" + res->right->var + ')');
 		}
 		return res;
 	}
@@ -87,7 +87,7 @@ private:
 			shared_ptr<expressions_node> res1(new expressions_node(expressions_node::NEG, expressions_node::NOT));
 			res = res1;
 			res->left = parse_neg();
-			res->var = ("!" + res->left->var);
+			res->var = ('(' + "!" + res->left->var + ')');
 			return res;
 		}
 		return res;

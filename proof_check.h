@@ -89,10 +89,12 @@ private:
 			expr->proof = expressions_node::SP;
 			return;
 		}
-		for (shared_ptr<expressions_node> axiom : axioms)
-			if (is_axiom(expr, axiom))
-				return;
-		is_MP(expr);
+		else {
+			for (shared_ptr<expressions_node> axiom : axioms)
+				if (is_axiom(expr, axiom))
+					return;
+			is_MP(expr);
+		}
 	}
 
 	bool is_axiom(shared_ptr<expressions_node> expr, shared_ptr<expressions_node> ax) {
