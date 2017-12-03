@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Файлы исходного кода">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Заголовочные файлы">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Файлы исходного кода\operations">
+      <UniqueIdentifier>{18e5de10-f3f6-4fd5-bad2-cae76f42adef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\operations\base_operations">
+      <UniqueIdentifier>{5860833c-ee16-4a14-92f6-e62452c02459}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\operations\binary_operations">
+      <UniqueIdentifier>{b980c947-91ca-4c4e-aec8-fc8c3091a36e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\operations\unary_operation">
+      <UniqueIdentifier>{2a748ee4-e72a-4674-9de0-3e514728ac94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\operations\other">
+      <UniqueIdentifier>{485fb47b-909c-4446-b6e3-416ac12c7505}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\operations\predicate">
+      <UniqueIdentifier>{e700878d-df26-4b76-bd39-e49602ef5b38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\Task2">
+      <UniqueIdentifier>{4c1daa31-d9c3-474c-ae45-65a9f335b736}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\Task3">
+      <UniqueIdentifier>{c63f3ec9-01cb-41f6-8b45-7612f9c459ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\Task3\proofs">
+      <UniqueIdentifier>{055017e3-6071-4e42-a6ef-bec3c1c23aa4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="binary_operation.h">
+      <Filter>Файлы исходного кода\operations\base_operations</Filter>
+    </ClInclude>
+    <ClInclude Include="operation.h">
+      <Filter>Файлы исходного кода\operations\base_operations</Filter>
+    </ClInclude>
+    <ClInclude Include="unary_operation.h">
+      <Filter>Файлы исходного кода\operations\base_operations</Filter>
+    </ClInclude>
+    <ClInclude Include="conjunction.h">
+      <Filter>Файлы исходного кода\operations\binary_operations</Filter>
+    </ClInclude>
+    <ClInclude Include="consequence.h">
+      <Filter>Файлы исходного кода\operations\binary_operations</Filter>
+    </ClInclude>
+    <ClInclude Include="disjunction.h">
+      <Filter>Файлы исходного кода\operations\binary_operations</Filter>
+    </ClInclude>
+    <ClInclude Include="equals.h">
+      <Filter>Файлы исходного кода\operations\binary_operations</Filter>
+    </ClInclude>
+    <ClInclude Include="multiplied.h">
+      <Filter>Файлы исходного кода\operations\binary_operations</Filter>
+    </ClInclude>
+    <ClInclude Include="summand.h">
+      <Filter>Файлы исходного кода\operations\binary_operations</Filter>
+    </ClInclude>
+    <ClInclude Include="every.h">
+      <Filter>Файлы исходного кода\operations\unary_operation</Filter>
+    </ClInclude>
+    <ClInclude Include="exist.h">
+      <Filter>Файлы исходного кода\operations\unary_operation</Filter>
+    </ClInclude>
+    <ClInclude Include="increment.h">
+      <Filter>Файлы исходного кода\operations\unary_operation</Filter>
+    </ClInclude>
+    <ClInclude Include="negation.h">
+      <Filter>Файлы исходного кода\operations\unary_operation</Filter>
+    </ClInclude>
+    <ClInclude Include="big_null.h">
+      <Filter>Файлы исходного кода\operations\other</Filter>
+    </ClInclude>
+    <ClInclude Include="substitution.h">
+      <Filter>Файлы исходного кода\operations\other</Filter>
+    </ClInclude>
+    <ClInclude Include="variable.h">
+      <Filter>Файлы исходного кода\operations\other</Filter>
+    </ClInclude>
+    <ClInclude Include="includes.h">
+      <Filter>Файлы исходного кода\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="func_predicate.h">
+      <Filter>Файлы исходного кода\operations\predicate</Filter>
+    </ClInclude>
+    <ClInclude Include="func.h">
+      <Filter>Файлы исходного кода\operations\predicate</Filter>
+    </ClInclude>
+    <ClInclude Include="predicate.h">
+      <Filter>Файлы исходного кода\operations\predicate</Filter>
+    </ClInclude>
+    <ClInclude Include="arrays.h">
+      <Filter>Файлы исходного кода\Task2</Filter>
+    </ClInclude>
+    <ClInclude Include="check_on_axioms.h">
+      <Filter>Файлы исходного кода\Task2</Filter>
+    </ClInclude>
+    <ClInclude Include="check_on_every_and_exist.h">
+      <Filter>Файлы исходного кода\Task2</Filter>
+    </ClInclude>
+    <ClInclude Include="deduction_theorem.h">
+      <Filter>Файлы исходного кода\Task2</Filter>
+    </ClInclude>
+    <ClInclude Include="parse.h">
+      <Filter>Файлы исходного кода\Task2</Filter>
+    </ClInclude>
+    <ClInclude Include="task2.h">
+      <Filter>Файлы исходного кода\Task2</Filter>
+    </ClInclude>
+    <ClInclude Include="task3.h">
+      <Filter>Файлы исходного кода\Task3</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="output.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="for_proof.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="comment_for_proof.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="proofl.txt">
+      <Filter>Файлы исходного кода\Task3\proofs</Filter>
+    </Text>
+    <Text Include="proofm.txt">
+      <Filter>Файлы исходного кода\Task3\proofs</Filter>
+    </Text>
+    <Text Include="input.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="base.txt">
+      <Filter>Файлы исходного кода\Task3\proofs</Filter>
+    </Text>
+    <Text Include="theorems.txt">
+      <Filter>Файлы исходного кода\Task3\proofs</Filter>
+    </Text>
+  </ItemGroup>
+</Project>
